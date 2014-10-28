@@ -36,7 +36,7 @@ robohub && (robohub.game = {
         y: 0
     },
     start: function () {
-        this.initLevel(1);
+        this.initLevel(3);
     },
     initLevel: function (number) {
         this.currLevel = number;
