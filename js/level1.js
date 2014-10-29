@@ -1,114 +1,58 @@
-function lev1() {
+function l() {
+    var stepLog = [];
+    var fromLog = [];
+    var top = 'north';
+    var down = 'south';
+    var right = 'east';
+    var left = 'west';
+    var go = true;
     var i = 0;
-    while (isFree('north')) {
+    var tmp;
+
+    console.log(map());
+    while (go) {
         i++;
+        if (i > 150) break;
+        if (isFree(top) && top != fromLog[(fromLog.length) - 1]) {
             north();
-        if (i > 20) break;
+            console.log(map());
+            stepLog.push(top);
+            fromLog.push(down);
+            continue;
+        } else if (isFree(down) && down != fromLog[(fromLog.length) - 1]) {
+            south();
+            console.log(map());
+            stepLog.push(down);
+            fromLog.push(top);
+            continue;
+        } else if (isFree(right) && right != fromLog[(fromLog.length) - 1]) {
+            east();
+            console.log(map());
+            stepLog.push(right);
+            fromLog.push(left);
+            continue;
+        } else if (isFree(left) && left != fromLog[(fromLog.length) - 1]) {
+            west();
+            console.log(map());
+            stepLog.push(left);
+            fromLog.push(right);
+            continue;
+        } else {
+            //tmp = fromLog.pop();
+            fromLog[(fromLog.length) - 1] = '';
+            continue;
+        }
     }
-    console.log(i + ' steps');
-
-}
-
-function lev2() {
-    var i = 0;
-    while (isFree('east')) {
-        i++;
-        east();
-        if (i > 20) break;
-    }
-    console.log(i + ' steps');
-}
-
-function lev3() {
-    var i = 0, go = true;
-
-//  ##########
-//  #@########
-//  #  #######
-//  ##  ######
-//  ###  #####
-//  ####  ####
-//  #####  ###
-//  ######  ##
-//  ####### *#
-//  ##########
-
-    while (goBottom() || goRight()) {
-        console.log(map());
-        i++;
-        if (i > 100) break;
-    }
-    //
-    //
-    //
-    //while (go) {
-    //    if (goBottom() || goRight() || goTop() || goLeft()) {
-    //        go = true;
-    //    } else {
-    //        go = false;
-    //    }
-    //
-    //    console.log(map());
-    //    //go = false;
-    //    i++;
-    //    if (i > 100) break;
-    //}
-    console.log(i + ' steps');
-}
-
-//  north
-function goTop() {
-    var i = 0;
-    while (isFree('north')) {
-        north();
-        i++;
-        if (i > 20) break;
-    }
-
-    return !!i;
-}
-
-//  south
-function goBottom() {
-    var i = 0;
-    while (isFree('south')) {
-        south();
-        i++;
-        if (i > 20) break;
-    }
-
-    return !!i;
-}
-
-//  west
-function goLeft () {
-    var  i = 0;
-    while (isFree('west')) {
-        west();
-        i++;
-        if (i > 20) break;
-    }
-
-    return !!i;
-}
-
-//  east
-function goRight() {
-    var  i = 0;
-    while (isFree('east')) {
-        east();
-        i++;
-        if (i > 20) break;
-    }
-
-    return !!i;
 }
 
 
-
-
-
-
-
-
-
+//#########
+//# #     #
+//# ## ## #
+//# #  ## #
+//# # ### #
+//# # #   #
+//#   # #@#
+//### # ###
+//#   #  *#
+//#########
