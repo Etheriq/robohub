@@ -99,7 +99,7 @@ function go() {
                 fromLog.push(eastC);
             }
         } else if (stepLog[newRoad] == eastC || stepLog[newRoad] == westC) {
-            if (isFree('south') && 'south' != stepLog[newRoad]) {
+            if (isFree(southC) && southC != stepLog[newRoad]) {
                 south();
                 console.log(map());
                 stepLog.push(southC);
