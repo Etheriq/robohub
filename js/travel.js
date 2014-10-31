@@ -8,13 +8,14 @@ function go() {
     var westC = 'west';
     var go = true;
     var i = 0;
+    var chk = '';
 
     console.log(map());
-    while (go) {
+    while (go && chk != 'next') {
         i++;
         if (i > 105) break;
         if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
-            north();
+            chk = north();
             updateLog(northC);
 
             if (isFree(eastC) || isFree(westC)) {
@@ -23,7 +24,7 @@ function go() {
 
             continue;
         } else if (isFree(southC) && southC != fromLog[(fromLog.length) - 1]) {
-            south();
+            chk = south();
             updateLog(southC);
 
             if (isFree(eastC) || isFree(westC)) {
@@ -32,7 +33,7 @@ function go() {
 
             continue;
         } else if (isFree(eastC) && eastC != fromLog[(fromLog.length) - 1]) {
-            east();
+            chk = east();
             updateLog(eastC);
 
             if (isFree(northC) || isFree(southC)) {
@@ -41,7 +42,7 @@ function go() {
 
             continue;
         } else if (isFree(westC) && westC != fromLog[(fromLog.length) - 1]) {
-            west();
+            chk = west();
             updateLog(westC);
 
             if (isFree(northC) || isFree(southC)) {
