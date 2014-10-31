@@ -11,7 +11,7 @@ function go() {
     var chk = '';
 
     console.log(map());
-    while (go && chk != 'next') {
+    while (go && (chk != 'next' && chk != 'end')) {
         i++;
         if (i > 35) break;
         if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
