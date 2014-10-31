@@ -13,7 +13,7 @@ function go() {
     console.log(map());
     while (go && chk != 'next') {
         i++;
-        if (i > 105) break;
+        if (i > 35) break;
         if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
             chk = north();
             updateLog(northC);
