@@ -81,8 +81,9 @@ function insertionArray(unsortedArray) {
 
 function mergeArray(unsortedArray) {
     var arrLen = unsortedArray.length;
-    var prefix = 0;
+    var c = 0;
     var tmpArr = [];
+    var tmpArr2 = [];
 
     while (unsortedArray.length > 0) {
         tmpArr.push(unsortedArray.slice(-2));
@@ -93,45 +94,48 @@ function mergeArray(unsortedArray) {
         }
     }
 
+    tmpArr2 = tmpArr.map(function(el){
+        return insertionArray(el)
+    }).reduce(function(el1, el2){
+        return el1.concat(el2);
+    });
 
+    return tmpArr2;
 
 }
 
+function sort2arr(array1, array2) {
+    var res1 = [], res2 = [];
 
+    res1 = insertionArray(array1);
+    res2 = insertionArray(array2);
 
+    return insertionArray(res1.concat(res2));
+}
 
+function merge2(ar){
+    var a = [],
+        b = [],
+        res = [],
+        middle = 0,
+        i = 0,
+        j = 0;
 
+    if (ar.length <= 1) {
+        return ar;
+    } else {
+        middle = Math.round(ar.length / 2);
+        for (i = 0; i < middle; i++) {
+            a.push(ar[i]);
+        }
+        for (j = middle; j < ar.length; j++) {
+            b.push(ar[j]);
+        }
 
+        //a = mm(a);
+        //b = mm(b);
+        res = sort2arr(a, b);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return res;
+    }
+}
