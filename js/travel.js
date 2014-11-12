@@ -6,37 +6,27 @@ function go() {
     var southC = 'south';
     var eastC = 'east';
     var westC = 'west';
-    var go = true;
     var i = 0;
     var chk = '';
 
     console.log(map());
-    while (go && (chk != 'next' && chk != 'end')) {
+    while (chk != 'next' && chk != 'end') {
         i++;
-        if (i > 35) break;
-        if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
-            chk = north();
-            updateLog(northC);
+        if (i > 80) break;
 
-            if (isFree(eastC) || isFree(westC)) {
-                crossroad = stepLog.length - 1;
-            }
-
-            continue;
-        } else if (isFree(southC) && southC != fromLog[(fromLog.length) - 1]) {
+        if (isFree(southC) && southC != fromLog[(fromLog.length) - 1]) {
             chk = south();
             updateLog(southC);
 
             if (isFree(eastC) || isFree(westC)) {
                 crossroad = stepLog.length - 1;
             }
-
             continue;
-        } else if (isFree(eastC) && eastC != fromLog[(fromLog.length) - 1]) {
-            chk = east();
-            updateLog(eastC);
+        } else if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
+            chk = north();
+            updateLog(northC);
 
-            if (isFree(northC) || isFree(southC)) {
+            if (isFree(eastC) || isFree(westC)) {
                 crossroad = stepLog.length - 1;
             }
 
@@ -50,10 +40,19 @@ function go() {
             }
 
             continue;
+        } else if (isFree(eastC) && eastC != fromLog[(fromLog.length) - 1]) {
+            chk = east();
+            updateLog(eastC);
+
+            if (isFree(northC) || isFree(southC)) {
+                crossroad = stepLog.length - 1;
+            }
+
+            continue;
         } else {
             back(stepLog, crossroad);
 
-            goToNewRoad(stepLog, crossroad);
+            goToNewRoad();
 
             continue;
         }
