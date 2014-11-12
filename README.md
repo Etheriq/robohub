@@ -1,1 +1,1 @@
-run <go();> command in browser console.
+run go(); command in browser console.
