@@ -80,10 +80,7 @@ function insertionArray(unsortedArray) {
 }
 
 function mergeArray(unsortedArray) {
-    var arrLen = unsortedArray.length;
-    var c = 0;
     var tmpArr = [];
-    var tmpArr2 = [];
 
     while (unsortedArray.length > 0) {
         tmpArr.push(unsortedArray.slice(-2));
@@ -94,18 +91,16 @@ function mergeArray(unsortedArray) {
         }
     }
 
-    tmpArr2 = tmpArr.map(function(el){
-        return insertionArray(el)
-    }).reduce(function(el1, el2){
-        return el1.concat(el2);
-    });
-
-    return tmpArr2;
-
+    return tmpArr.map(function(el){
+            return insertionArray(el)
+        }).reduce(function(el1, el2){
+            return sort2arr(el1, el2);
+        });
 }
 
 function sort2arr(array1, array2) {
-    var res1 = [], res2 = [];
+    var res1 = [],
+        res2 = [];
 
     res1 = insertionArray(array1);
     res2 = insertionArray(array2);
@@ -113,6 +108,10 @@ function sort2arr(array1, array2) {
     return insertionArray(res1.concat(res2));
 }
 
+
+
+
+//   testing
 function merge2(ar){
     var a = [],
         b = [],
@@ -132,8 +131,8 @@ function merge2(ar){
             b.push(ar[j]);
         }
 
-        //a = mm(a);
-        //b = mm(b);
+        //a = merge2(a);
+        //b = merge2(b);
         res = sort2arr(a, b);
 
         return res;
