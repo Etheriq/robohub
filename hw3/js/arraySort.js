@@ -108,9 +108,6 @@ function sort2arr(array1, array2) {
     return insertionArray(res1.concat(res2));
 }
 
-
-
-
 //   testing
 function merge2(ar){
     var a = [],

@@ -14,17 +14,27 @@ function go() {
         i++;
         if (i > 80) break;
 
-        if (isFree(southC) && southC != fromLog[(fromLog.length) - 1]) {
-            chk = south();
-            updateLog(southC);
+        if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
+            chk = north();
+            updateLog(northC);
 
             if (isFree(eastC) || isFree(westC)) {
                 crossroad = stepLog.length - 1;
             }
+
             continue;
-        } else if (isFree(northC) && northC != fromLog[(fromLog.length) - 1]) {
-            chk = north();
-            updateLog(northC);
+        } else if (isFree(eastC) && eastC != fromLog[(fromLog.length) - 1]) {
+            chk = east();
+            updateLog(eastC);
+
+            if (isFree(northC) || isFree(southC)) {
+                crossroad = stepLog.length - 1;
+            }
+
+            continue;
+        } else if (isFree(southC) && southC != fromLog[(fromLog.length) - 1]) {
+            chk = south();
+            updateLog(southC);
 
             if (isFree(eastC) || isFree(westC)) {
                 crossroad = stepLog.length - 1;
@@ -40,18 +50,8 @@ function go() {
             }
 
             continue;
-        } else if (isFree(eastC) && eastC != fromLog[(fromLog.length) - 1]) {
-            chk = east();
-            updateLog(eastC);
-
-            if (isFree(northC) || isFree(southC)) {
-                crossroad = stepLog.length - 1;
-            }
-
-            continue;
         } else {
             back(stepLog, crossroad);
-
             goToNewRoad();
 
             continue;
