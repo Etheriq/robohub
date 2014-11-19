@@ -15,7 +15,9 @@ robohub && (robohub.api = {
         east: 'move right',
         south: 'move back',
         west: 'move left',
-        isFree: 'say what direction you want check'
+        isFree: 'say what direction you want check',
+        hint: 'hint',
+        restart: 'restart'
     },
     map: function () {
         return robohub.game.stageToString();
